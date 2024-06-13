@@ -4,22 +4,30 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
-public class LogIn extends JFrame {
+public class LogIn extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel logInPane;
 	private JTextField txtUserId;
-	private JTextField txtPassword;
-
+	private JPasswordField txtPassword;
+	private JFrame frame;
+	 JCheckBox seePass;
 	/**
 	 * Launch the application.
 	 */
@@ -74,7 +82,7 @@ public class LogIn extends JFrame {
 		logInPane.add(txtUserId);
 		txtUserId.setColumns(10);
 		
-		txtPassword = new JTextField();
+		txtPassword = new JPasswordField();
 		txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtPassword.setColumns(10);
 		txtPassword.setBounds(146, 128, 279, 40);
@@ -82,7 +90,47 @@ public class LogIn extends JFrame {
 		
 		JButton btnLogIn = new JButton("LOG IN");
 		btnLogIn.setFont(new Font("Poppins", Font.PLAIN, 20));
-		btnLogIn.setBounds(146, 178, 280, 40);
+		btnLogIn.setBounds(146, 228, 280, 40);
 		logInPane.add(btnLogIn);
+		
+		seePass = new JCheckBox ("Show password");
+		seePass.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		seePass.setBounds(146, 178, 280, 40);
+		seePass.addActionListener(this);
+		this.add(seePass);
+		this.setVisible(true);
+		 btnLogIn.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent evt) {
+	                String username = txtUserId.getText();
+	                String password = new String(txtPassword.getPassword());
+	                
+	                if ("admin".equals(username) && "password".equals(password)) {
+	                    JOptionPane.showMessageDialog(frame, "Login successful!");
+	                  
+	                } else {
+	                    JOptionPane.showMessageDialog(frame, "Invalid username or password", "error", JOptionPane.ERROR_MESSAGE);
+	                }
+	            }
+		 });
+	            
+
+					
+				
+	        }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource()==seePass) {
+	                	if (seePass.isSelected()) {
+	                		txtPassword.setEchoChar((char)0);
+	                	}
+	                	else {
+	                		txtPassword.setEchoChar ('*');
+	                	}
+	                }
+		
 	}
+	
+
+				
 }
