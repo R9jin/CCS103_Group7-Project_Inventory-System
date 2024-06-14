@@ -190,8 +190,8 @@ public class Inventory extends JFrame {
                 int selectedRow = productTable.getSelectedRow();
                 if (selectedRow != -1) {
                     String productName = (String) model.getValueAt(selectedRow, 1);
-                    int quantity = Integer.parseInt((String) model.getValueAt(selectedRow, 4)); // Parsing quantity as an integer
-                    double price = Double.parseDouble((String) model.getValueAt(selectedRow, 5)); // Parsing price as a double
+                    int quantity = Integer.parseInt((String) model.getValueAt(selectedRow, 4)); 
+                    double price = Double.parseDouble((String) model.getValueAt(selectedRow, 5)); 
 
                     productNameTxtField.setText(productName);
                     quantityTxtField.setText(Integer.toString(quantity));
@@ -222,12 +222,12 @@ public class Inventory extends JFrame {
                     double price = Double.parseDouble(priceTxtField.getText());
 
                     // Update table model with new values
-                    model.setValueAt(productName, selectedRow, 1); // Product Name column
-                    model.setValueAt(quantity, selectedRow, 4); // Quantity column
-                    model.setValueAt(price, selectedRow, 5); // Unit Price column
+                    model.setValueAt(productName, selectedRow, 1); 
+                    model.setValueAt(quantity, selectedRow, 4); 
+                    model.setValueAt(price, selectedRow, 5); 
 
                     double totalPrice = quantity * price;
-                    model.setValueAt(totalPrice, selectedRow, 6); // Total Price column
+                    model.setValueAt(totalPrice, selectedRow, 6); 
 
                     JOptionPane.showMessageDialog(null, "Product updated successfully");
                 } else {
@@ -236,7 +236,7 @@ public class Inventory extends JFrame {
             }
         });
 
-        updateIds(); // Initialize row numbers
+        updateIds(); 
     }
 
     private void updateIds() {
